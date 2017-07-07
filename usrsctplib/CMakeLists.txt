@@ -31,7 +31,10 @@
 
 cmake_minimum_required(VERSION 2.6)
 
-project(usrsctplib)
+project(usrsctp)
+set(PROJECT_DESCRIPTION "A portable SCTP userland stack.")
+set(PROJECT_URL
+        "https://github.com/neat-project/usrsctp-neat")
 
 
 #################################################
@@ -47,12 +50,11 @@ include(CheckTypeSize)
 set(VERSION "1.0.0")
 
 set(prefix ${CMAKE_INSTALL_PREFIX})
-set(exec_prefix "\${prefix}")
-set(libdir "\${exec_prefix}/lib")
-set(includedir "\${prefix}/include/usrsctp")
+set(exec_prefix "${prefix}")
+set(libdir "${exec_prefix}/lib")
+set(includedir "${prefix}/include/")
 set(CMAKE_REQUIRED_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_MACOSX_RPATH 1)
-
 
 #################################################
 # CHECK FOR TYPES AND FUNCTIONS
@@ -302,3 +304,12 @@ endif ()
 
 install(TARGETS usrsctp usrsctp-static DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES usrsctp.h DESTINATION include)
+
+
+set(INSTALL_PKGCONFIG_DIR "${exec_prefix}/libdata/pkgconfig")
+
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pkg-config.pc.cmakein
+        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc
+        DESTINATION ${INSTALL_PKGCONFIG_DIR})
