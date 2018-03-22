@@ -1,6 +1,4 @@
 /*-
- * SPDX-License-Identifier: BSD-3-Clause
- *
  * Copyright (c) 2001-2008, by Cisco Systems, Inc. All rights reserved.
  * Copyright (c) 2008-2012, by Randall Stewart. All rights reserved.
  * Copyright (c) 2008-2012, by Michael Tuexen. All rights reserved.
@@ -34,7 +32,7 @@
 
 #ifdef __FreeBSD__
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: head/sys/netinet/sctp_var.h 317457 2017-04-26 19:26:40Z tuexen $");
+__FBSDID("$FreeBSD: head/sys/netinet/sctp_var.h 309682 2016-12-07 19:30:59Z tuexen $");
 #endif
 
 #ifndef _NETINET_SCTP_VAR_H_
@@ -419,14 +417,9 @@ void sctp_input __P((struct mbuf *, int));
 #endif
 void sctp_pathmtu_adjustment __P((struct sctp_tcb *, uint16_t));
 #else
-#if defined(__APPLE__) && !defined(APPLE_LEOPARD) && !defined(APPLE_SNOWLEOPARD) && !defined(APPLE_LION) && !defined(APPLE_MOUNTAINLION) && !defined(APPLE_ELCAPITAN)
-void sctp_ctlinput(int, struct sockaddr *, void *, struct ifnet * SCTP_UNUSED);
-#else
 void sctp_ctlinput(int, struct sockaddr *, void *);
-#endif
 #if defined(__Userspace__)
 int sctp_ctloutput(int, struct socket *, int, int, struct mbuf **);
-void sctp_pathmtu_adjustment(struct sctp_tcb *, uint16_t);
 #else
 int sctp_ctloutput(struct socket *, struct sockopt *);
 #endif
@@ -443,6 +436,8 @@ void sctp_pathmtu_adjustment(struct sctp_tcb *, uint16_t);
 #else
 #if defined(__Panda__)
 void sctp_input(pakhandle_type i_pak);
+#elif defined(__Userspace__)
+void sctp_pathmtu_adjustment(struct sctp_tcb *, uint16_t);
 #else
 void sctp_input(struct mbuf *,...);
 #endif
@@ -458,7 +453,7 @@ void sctp_drain(void);
 void sctp_init(uint16_t,
                int (*)(void *addr, void *buffer, size_t length, uint8_t tos, uint8_t set_df));
 void sctp_notify(struct sctp_inpcb *, struct sctp_tcb *, struct sctp_nets *,
-                 uint8_t, uint8_t, uint16_t, uint32_t);
+                 uint8_t, uint8_t, uint16_t, uint16_t);
 #elif defined(__FreeBSD__) && __FreeBSD_version < 902000
 void sctp_init __P((void));
 #elif defined(__APPLE__) && (!defined(APPLE_LEOPARD) && !defined(APPLE_SNOWLEOPARD) &&!defined(APPLE_LION) && !defined(APPLE_MOUNTAINLION))
@@ -466,7 +461,7 @@ void sctp_init(struct protosw *pp, struct domain *dp);
 #else
 void sctp_init(void);
 void sctp_notify(struct sctp_inpcb *, struct sctp_tcb *, struct sctp_nets *,
-    uint8_t, uint8_t, uint16_t, uint32_t);
+    uint8_t, uint8_t, uint16_t, uint16_t);
 #endif
 #if !defined(__FreeBSD__)
 void sctp_finish(void);

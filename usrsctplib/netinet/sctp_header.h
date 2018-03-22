@@ -1,6 +1,4 @@
 /*-
- * SPDX-License-Identifier: BSD-3-Clause
- *
  * Copyright (c) 2001-2007, by Cisco Systems, Inc. All rights reserved.
  * Copyright (c) 2008-2012, by Randall Stewart. All rights reserved.
  * Copyright (c) 2008-2012, by Michael Tuexen. All rights reserved.
@@ -605,7 +603,7 @@ struct sctp_auth_chunk {
 #include <packoff.h>
 #endif
 #if defined(__Userspace_os_Windows)
-#pragma pack(pop)
+#pragma pack ()
 #endif
 #undef SCTP_PACKED
 #endif				/* !__sctp_header_h__ */

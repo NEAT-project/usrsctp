@@ -58,7 +58,7 @@ typedef char* caddr_t;
 #endif
 
 static void
-handle_upcall(struct socket *sock, void *arg, int flgs)
+handle_upcall(struct socket *sock, void *arg, int flags)
 {
 	char *buf;
 	int events = usrsctp_get_events(sock);

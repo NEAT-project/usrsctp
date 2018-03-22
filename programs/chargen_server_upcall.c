@@ -84,7 +84,7 @@ handle_accept(struct socket *sock, void *data, int flags)
 }
 
 static void
-handle_upcall(struct socket *sock, void *data, int flgs)
+handle_upcall(struct socket *sock, void *data, int flags)
 {
 //	int events = usrsctp_get_events(sock);
 	int events;

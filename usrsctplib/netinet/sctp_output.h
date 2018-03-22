@@ -1,6 +1,4 @@
 /*-
- * SPDX-License-Identifier: BSD-3-Clause
- *
  * Copyright (c) 2001-2007, by Cisco Systems, Inc. All rights reserved.
  * Copyright (c) 2008-2012, by Randall Stewart. All rights reserved.
  * Copyright (c) 2008-2012, by Michael Tuexen. All rights reserved.
@@ -34,7 +32,7 @@
 
 #ifdef __FreeBSD__
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: head/sys/netinet/sctp_output.h 323861 2017-09-21 11:56:31Z tuexen $");
+__FBSDID("$FreeBSD: head/sys/netinet/sctp_output.h 310590 2016-12-26 11:06:41Z tuexen $");
 #endif
 
 #ifndef _NETINET_SCTP_OUTPUT_H_
@@ -93,7 +91,7 @@ sctp_send_initiate_ack(struct sctp_inpcb *, struct sctp_tcb *,
 #if defined(__FreeBSD__)
                        uint8_t, uint32_t,
 #endif
-                       uint32_t, uint16_t);
+                       uint32_t, uint16_t, int);
 
 struct mbuf *
 sctp_arethere_unrecognized_parameters(struct mbuf *, int, int *,
@@ -142,11 +140,6 @@ void sctp_toss_old_asconf(struct sctp_tcb *);
 void sctp_fix_ecn_echo(struct sctp_association *);
 
 void sctp_move_chunks_from_net(struct sctp_tcb *stcb, struct sctp_nets *net);
-
-
-#define SCTP_DATA_CHUNK_OVERHEAD(stcb) ((stcb)->asoc.idata_supported ? \
-					sizeof(struct sctp_idata_chunk) : \
-					sizeof(struct sctp_data_chunk))
 
 #if defined(__FreeBSD__) && __FreeBSD_version >= 500000
 int
