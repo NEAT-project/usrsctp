@@ -53,7 +53,7 @@
 
 
 static void
-handle_upcall(struct socket *sock, void *data, int flags)
+handle_upcall(struct socket *sock, void *data, int flgs)
 {
 	char namebuf[INET6_ADDRSTRLEN];
 	const char *name;

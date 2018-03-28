@@ -66,7 +66,7 @@ typedef char* caddr_t;
 #define BUFFERSIZE                 (1<<16)
 
 
-static void handle_upcall(struct socket *sock, void *arg, int flags)
+static void handle_upcall(struct socket *sock, void *arg, int flgs)
 {
 	int events = usrsctp_get_events(sock);
 	int bytesSent = 0;
