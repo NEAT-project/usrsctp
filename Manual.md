@@ -126,7 +126,7 @@ usrsctp_socket(int domain,
                                  size_t datalen,
                                  struct sctp_rcvinfo,
                                  int flags,
-                                 void* ulp_info),
+                                 void *ulp_info),
                int (*send_cb)(struct socket *sock,
                               uint32_t sb_free),
                uint32_t sb_threshold,
@@ -219,7 +219,7 @@ usrsctp_connect(struct socket *so,
 * name: Address of the peer to connect to (`struct sockaddr_in` for an IPv4 address or `struct sockaddr_in6` for an IPv6 address).
 * addrlen: Size of the peer's address.
 
-`usrsctp_shutdown()` returns 0 on success and -1 in case of an error.
+`usrsctp_connect()` returns 0 on success and -1 in case of an error.
 
 ### usrsctp_shutdown()
 
@@ -234,7 +234,7 @@ usrsctp_shutdown(struct socket *so, int how)
   * SHUT_WR:  Disables further send operations, and initiates the SCTP shutdown sequence.
   * SHUT_RDWR:  Disables further send and receive operations, and initiates the SCTP shutdown sequence.
 
-`usrsctp_listen()` returns 0 on success and -1 in case of an error.
+`usrsctp_shutdown()` returns 0 on success and -1 in case of an error.
 
 ## Sending and Receiving Data
 Since the publication of [RFC 6458](http://tools.ietf.org/html/rfc6458) there is only one function for sending and one for receiving
@@ -476,7 +476,7 @@ The parameter configures how many times an unlucky chunk can be retransmitted be
 
 #### usrsctp_sysctl_set_sctp_path_pf_threshold()
 TBD
-Default potentially failed threshold. Default: 65535
+Default potentially failed threshold. Default: 65535		
 
 #### usrsctp_sysctl_set_sctp_abort_if_one_2_one_hits_limit()
 TBD
@@ -639,7 +639,7 @@ Calculating the checksum for packets sent on loopback is turned off by default. 
 The peer is notified about the number of outgoing streams in the INIT or INIT-ACK chunk. The default is 10.
 
 #### usrsctp_sysctl_set_sctp_do_drain()
-Determines whether SCTP should respond to the drain calls. Default: 1
+Determines whether SCTP should respond to the drain calls. Default: 1		
 
 #### usrsctp_sysctl_set_sctp_strict_data_order()
 TBD

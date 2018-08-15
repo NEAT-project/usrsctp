@@ -31,6 +31,7 @@
 /*
  * Usage: client remote_addr remote_port [local_port] [local_encaps_port] [remote_encaps_port]
  */
+
 #ifdef _WIN32
 #define _CRT_SECURE_NO_WARNINGS
 #endif
@@ -324,7 +325,6 @@ main(int argc, char *argv[])
 	if ((sock = usrsctp_socket(AF_INET6, SOCK_STREAM, IPPROTO_SCTP, receive_cb, NULL, 0, NULL)) == NULL) {
 		perror("usrsctp_socket");
 	}
-
 	memset(&event, 0, sizeof(event));
 	event.se_assoc_id = SCTP_ALL_ASSOC;
 	event.se_on = 1;
@@ -334,7 +334,6 @@ main(int argc, char *argv[])
 			perror("setsockopt SCTP_EVENT");
 		}
 	}
-
 	if (argc > 3) {
 		memset((void *)&addr6, 0, sizeof(struct sockaddr_in6));
 #ifdef HAVE_SIN6_LEN

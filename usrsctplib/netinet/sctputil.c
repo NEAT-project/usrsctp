@@ -1106,7 +1106,7 @@ sctp_init_asoc(struct sctp_inpcb *inp, struct sctp_tcb *stcb,
 	asoc->sent_queue_retran_cnt = 0;
 
 	/* for CMT */
-	asoc->last_net_cmt_send_started = NULL;
+        asoc->last_net_cmt_send_started = NULL;
 
 	/* This will need to be adjusted */
 	asoc->last_acked_seq = asoc->init_seq_number - 1;
@@ -7088,7 +7088,7 @@ sctp_connectx_helper_add(struct sctp_tcb *stcb, struct sockaddr *addr,
 #endif
 #if defined(__Userspace__)
 		case AF_CONN:
-			incr = sizeof(struct sockaddr_in6);
+			incr = sizeof(struct sockaddr_conn);
 			if (sctp_add_remote_addr(stcb, sa, NULL, stcb->asoc.port,
 			                         SCTP_DONOT_SETSCOPE,
 			                         SCTP_ADDR_IS_CONFIRMED)) {
@@ -7680,8 +7680,8 @@ sctp_log_trace(uint32_t subsys, const char *str SCTP_UNUSED, uint32_t a, uint32_
 	SCTP_BASE_SYSCTL(sctp_log).entry[saveindex].params[5] = f;
 #endif
 }
-#endif
 
+#endif
 #if defined(__FreeBSD__)
 #if __FreeBSD_version >= 800044
 static void

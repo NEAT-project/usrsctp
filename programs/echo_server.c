@@ -30,7 +30,7 @@
 
 /*
  * Usage: echo_server [local_encaps_port] [remote_encaps_port]
- *
+ * 
  * Example
  * Server: $ ./echo_server 11111 22222
  * Client: $ ./client 127.0.0.1 7 0 22222 11111
@@ -221,9 +221,9 @@ main(int argc, char *argv[])
 	while (1) {
 		if (use_cb) {
 #ifdef _WIN32
-			Sleep(SLEEP * 1000);
+		Sleep(SLEEP * 1000);
 #else
-			sleep(SLEEP);
+		sleep(SLEEP);
 #endif
 		} else {
 			from_len = (socklen_t)sizeof(struct sockaddr_in6);

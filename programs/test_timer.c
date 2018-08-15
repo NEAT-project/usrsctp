@@ -37,7 +37,7 @@
 #include <usrsctp.h>
 
 int
-main(void)
+main(void) 
 {
 	unsigned int i;
 

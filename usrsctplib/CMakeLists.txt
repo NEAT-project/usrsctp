@@ -30,11 +30,6 @@
 #
 
 
-#project(usrsctp)
-#set(PROJECT_DESCRIPTION "A portable SCTP userland stack.")
-#set(PROJECT_URL "https://github.com/neat-project/usrsctp-neat")
-
-
 #################################################
 # INCLUDE MODULES AND SETTINGS
 #################################################
@@ -197,12 +192,3 @@ endif ()
 
 install(TARGETS usrsctp usrsctp-static DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(FILES usrsctp.h DESTINATION include)
-
-
-#set(INSTALL_PKGCONFIG_DIR "${exec_prefix}/libdata/pkgconfig")
-
-
-#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pkg-config.pc.cmakein
-#        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
-#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.pc
-#        DESTINATION ${INSTALL_PKGCONFIG_DIR})

@@ -1487,7 +1487,7 @@ sctp_findassociation_ep_addr(struct sctp_inpcb **inp_p, struct sockaddr *remote,
 #endif
 #if defined(__Userspace__)
 	case AF_CONN:
-		rport = (((struct sockaddr_in6 *)remote)->sin6_port);
+		rport = (((struct sockaddr_conn *)remote)->sconn_port);
 		break;
 #endif
 	default:
@@ -2480,7 +2480,7 @@ sctp_findassociation_special_addr(struct mbuf *m, int offset,
 #endif
 		offset += SCTP_SIZE32(plen);
 		phdr = sctp_get_next_param(m, offset, &param_buf,
-		                           sizeof(param_buf));
+					   sizeof(param_buf));
 	}
 	return (NULL);
 }
@@ -7567,8 +7567,8 @@ sctp_load_addresses_from_init(struct sctp_tcb *stcb, struct mbuf *m,
 				goto next_param;
 			}
 			phdr = sctp_get_next_param(m, offset,
-			                           (struct sctp_paramhdr *)random_store,
-			                           plen);
+						   (struct sctp_paramhdr *)random_store,
+						   plen);
 			if (phdr == NULL)
 				return (-26);
 			p_random = (struct sctp_auth_random *)phdr;
@@ -7621,8 +7621,8 @@ sctp_load_addresses_from_init(struct sctp_tcb *stcb, struct mbuf *m,
 				goto next_param;
 			}
 			phdr = sctp_get_next_param(m, offset,
-			                           (struct sctp_paramhdr *)chunks_store,
-			                           plen);
+						   (struct sctp_paramhdr *)chunks_store,
+						   plen);
 			if (phdr == NULL)
 				return (-30);
 			chunks = (struct sctp_auth_chunk_list *)phdr;
@@ -7671,7 +7671,7 @@ sctp_load_addresses_from_init(struct sctp_tcb *stcb, struct mbuf *m,
 			break;
 		}
 		phdr = sctp_get_next_param(m, offset, &param_buf,
-		                           sizeof(param_buf));
+					   sizeof(param_buf));
 	}
 	/* Now check to see if we need to purge any addresses */
 	TAILQ_FOREACH_SAFE(net, &stcb->asoc.nets, sctp_next, nnet) {
